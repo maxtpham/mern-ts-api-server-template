@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "sourceMap": true
+  }
+  ,"exclude": [
+    ".vscode",
+    "node_modules",
+    "bin",
+    "config"
+  ]
+  ,"include": [
+    "**/*.ts"
+  ]
+}
