@@ -98,6 +98,7 @@ export default config;
 ```
 ### Using the config in index.ts
 ```typescript
+import config from './app/AppConfig';
 app.listen(config.Port || 3000, () => console.log(`Server listening on port ${config.Port || 3000}!`));
 ```
 ### nodemon monitors config changes
