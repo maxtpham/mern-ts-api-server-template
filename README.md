@@ -19,7 +19,7 @@ npm start
 chrome http://localhost:3000
 ```
 # III. Create the template
-## 1. Init ExpressJS/Typescript with nodemon
+## 1. ExpressJS/Typescript
 ### Install npm packages
 ```bash
 # Create package.json
@@ -114,3 +114,4 @@ npm start
 chrome http://localhost:3000
 chrome http://localhost:3001
 ```
+## 3. InversifyJS
