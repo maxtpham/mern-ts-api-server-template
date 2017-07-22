@@ -1,0 +1,3 @@
+{
+    "Port": 3000     // server listen port (default to 3000 if not set)
+}

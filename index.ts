@@ -1,5 +1,6 @@
 import * as express from 'express';
+import config from './app/AppConfig';
 
 const app = express();
 app.get('/', (req, res) => { res.send(`<b>Time:</b> ${new Date()}`); });
-app.listen(3000, () => console.log('Server listening on port 3000!'));
+app.listen(config.Port || 3000, () => console.log(`Server listening on port ${config.Port || 3000}!`));

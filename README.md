@@ -73,3 +73,43 @@ app.listen(3000, () => console.log('Server listening on port 3000!'));
 npm start
 chrome http://localhost:3000
 ```
+## 2. Configuration
+### Install [npm config package](https://www.npmjs.com/package/config)
+```bash
+npm install --save config
+npm install --save-dev @types/config
+```
+### Create config/development.json
+```json
+{
+    "Port": 3000 // server listen port (default to 3000 if not set)
+}
+```
+### Create app/AppConfig.ts
+```typescript
+import { IConfig } from "config";
+
+interface IAppConfig extends IConfig {
+    Port: number;
+}
+
+var config: IAppConfig = require('config');
+export default config;
+```
+### Using the config in index.ts
+```typescript
+app.listen(config.Port || 3000, () => console.log(`Server listening on port ${config.Port || 3000}!`));
+```
+### nodemon monitors config changes
+```json
+"scripts": {
+    "start": "./node_modules/.bin/nodemon --watch **/*.ts --watch config/*.json --ignore node_modules/ --ignore bin/ --ignore .vscode/ --exec .\\node_modules\\.bin\\ts-node index.ts"
+},
+```
+### Test
+```bash
+npm start
+# Edit config port to 3001 (in config/development.json)
+chrome http://localhost:3000
+chrome http://localhost:3001
+```
