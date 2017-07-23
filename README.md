@@ -1,24 +1,29 @@
 Template for a full-featured [MERN stack](http://mern.io)/[Typescript](http://www.typescriptlang.org) & [Swagger](https://swagger.io)/[InversifyJS](http://inversify.io) APIs server with [nodemon](https://nodemon.io) to monitor for any changes in your source and automatically restart Node server
 # Content
-- [I. Features](#)
-- [II. Using the template](#)
-- [III. Create the template](#)
-	- [1. ExpressJS/Typescript](#)
-		- [Install npm packages](#)
-		- [Create tsconfig.json](#)
-		- [Start command in package.json](#)
-		- [Create index.ts](#)
-		- [Test](#)
-	- [2. Configuration](#)
-		- [Install npm config package](#)
-		- [Create config/development.json](#)
-		- [Create app/AppConfig.ts](#)
-		- [Using the config in index.ts](#)
-		- [nodemon monitors config changes](#)
-		- [Test](#)
-	- [3. InversifyJS](#)
-		- [Install packages](#)
-		- [Edit tsconfig.json](#)
+<!-- TOC -->
+
+- [Content](#content)
+- [I. Features](#i-features)
+- [II. Using the template](#ii-using-the-template)
+- [III. Create the template](#iii-create-the-template)
+    - [1. ExpressJS/Typescript](#1-expressjs-typescript)
+        - [Install packages](#install-packages)
+        - [Create tsconfig.json](#create-tsconfig-json)
+        - [Start command in package.json](#start-command-in-package-json)
+        - [Create index.ts](#create-index-ts)
+        - [Test](#test)
+    - [2. Configuration](#2-configuration)
+        - [Install packages](#install-packages)
+        - [Create config/development.json](#create-config-development-json)
+        - [Create app/AppConfig.ts](#create-app-appconfig-ts)
+        - [Using the config in index.ts](#using-the-config-in-index-ts)
+        - [nodemon monitors config changes](#nodemon-monitors-config-changes)
+        - [Test](#test)
+    - [3. InversifyJS](#3-inversifyjs)
+        - [Install packages](#install-packages)
+        - [Update tsconfig.json](#update-tsconfig-json)
+
+<!-- /TOC -->
 # I. Features
 - Node/ExpressJS Server with nodemon
 - Inversify for DI/IoC to build testable RESTful APIs
@@ -40,7 +45,7 @@ chrome http://localhost:3000
 ```
 # III. Create the template
 ## 1. ExpressJS/Typescript
-### Install npm packages
+### Install packages
 ```bash
 # Create package.json
 npm init -y
@@ -94,7 +99,7 @@ npm start
 chrome http://localhost:3000
 ```
 ## 2. Configuration
-### Install [npm config package](https://www.npmjs.com/package/config)
+### Install packages
 ```bash
 npm install --save config
 npm install --save-dev @types/config
@@ -134,13 +139,14 @@ npm start
 chrome http://localhost:3000
 chrome http://localhost:3001
 ```
-## 3. [InversifyJS](https://github.com/inversify/InversifyJS#installation)
+## 3. InversifyJS
+Please see [InversifyJS installation guide](https://github.com/inversify/InversifyJS#installation) for more information
 ### Install packages
 ```bash
 npm install --save inversify reflect-metadata
 npm install --save-dev @types/reflect-metadata
 ```
-### Edit tsconfig.json
+### Update tsconfig.json
 **moduleResolution** set to **node** (instead of default **classic**) to solve the issue [Cannot find module 'inversify'](https://github.com/inversify/InversifyJS/issues/384) in **VSCode**. As there isn't separated typing for @types/inversify accordding to comment from InversifyJS's owner on their [npm package](https://www.npmjs.com/package/@types/inversify).
 ```json
 {

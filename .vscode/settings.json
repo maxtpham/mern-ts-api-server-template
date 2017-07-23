@@ -3,8 +3,7 @@
         "node_modules/": true,
         ".vscode/": true,
         "bin/": true,
-        ".*": true,
-        "package-lock.json": true,
-        "tsconfig.json": true
+        ".gitignore": true,
+        "package-lock.json": true
     }
 }
