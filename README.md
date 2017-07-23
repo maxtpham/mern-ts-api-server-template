@@ -7,20 +7,20 @@ Template for a full-featured [MERN stack](http://mern.io)/[Typescript](http://ww
 - [II. Using the template](#ii-using-the-template)
 - [III. Create the template](#iii-create-the-template)
     - [1. ExpressJS/Typescript](#1-expressjs-typescript)
-        - [Install packages](#install-packages)
+        - [Install initial ackages](#install-initial-ackages)
         - [Create tsconfig.json](#create-tsconfig-json)
         - [Start command in package.json](#start-command-in-package-json)
         - [Create index.ts](#create-index-ts)
-        - [Test](#test)
+        - [Test express server](#test-express-server)
     - [2. Configuration](#2-configuration)
-        - [Install packages](#install-packages)
+        - [Install config packages](#install-config-packages)
         - [Create config/development.json](#create-config-development-json)
         - [Create app/AppConfig.ts](#create-app-appconfig-ts)
         - [Using the config in index.ts](#using-the-config-in-index-ts)
         - [nodemon monitors config changes](#nodemon-monitors-config-changes)
-        - [Test](#test)
+        - [Test config changes](#test-config-changes)
     - [3. InversifyJS](#3-inversifyjs)
-        - [Install packages](#install-packages)
+        - [Install Inversify packages](#install-inversify-packages)
         - [Update tsconfig.json](#update-tsconfig-json)
 
 <!-- /TOC -->
@@ -45,7 +45,7 @@ chrome http://localhost:3000
 ```
 # III. Create the template
 ## 1. ExpressJS/Typescript
-### Install packages
+### Install initial ackages
 ```bash
 # Create package.json
 npm init -y
@@ -93,13 +93,13 @@ const app = express();
 app.get('/', (req, res) => { res.send(`<b>Time:</b> ${new Date()}`); });
 app.listen(3000, () => console.log('Server listening on port 3000!'));
 ```
-### Test
+### Test express server
 ```bash
 npm start
 chrome http://localhost:3000
 ```
 ## 2. Configuration
-### Install packages
+### Install config packages
 ```bash
 npm install --save config
 npm install --save-dev @types/config
@@ -132,7 +132,7 @@ app.listen(config.Port || 3000, () => console.log(`Server listening on port ${co
     "start": "./node_modules/.bin/nodemon --watch src/**/*.ts --watch config/*.json --exec .\\node_modules\\.bin\\ts-node src/app.ts"
 },
 ```
-### Test
+### Test config changes
 ```bash
 npm start
 # Edit config port to 3001 (in config/development.json)
@@ -141,7 +141,7 @@ chrome http://localhost:3001
 ```
 ## 3. InversifyJS
 Please see [InversifyJS installation guide](https://github.com/inversify/InversifyJS#installation) for more information
-### Install packages
+### Install Inversify packages
 ```bash
 npm install --save inversify reflect-metadata
 npm install --save-dev @types/reflect-metadata
