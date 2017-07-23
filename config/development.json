@@ -1,3 +1,4 @@
 {
-    "Port": 3000     // server listen port (default to 3000 if not set)
+    "Port": 3000, // server listen port (if n/a then no server wil be created)
+    "MongoDB": "mongodb://localhost/test"
 }
