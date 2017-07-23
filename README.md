@@ -1,4 +1,24 @@
 Template for a full-featured [MERN stack](http://mern.io)/[Typescript](http://www.typescriptlang.org) & [Swagger](https://swagger.io)/[InversifyJS](http://inversify.io) APIs server with [nodemon](https://nodemon.io) to monitor for any changes in your source and automatically restart Node server
+# Content
+- [I. Features](#)
+- [II. Using the template](#)
+- [III. Create the template](#)
+	- [1. ExpressJS/Typescript](#)
+		- [Install npm packages](#)
+		- [Create tsconfig.json](#)
+		- [Start command in package.json](#)
+		- [Create index.ts](#)
+		- [Test](#)
+	- [2. Configuration](#)
+		- [Install npm config package](#)
+		- [Create config/development.json](#)
+		- [Create app/AppConfig.ts](#)
+		- [Using the config in index.ts](#)
+		- [nodemon monitors config changes](#)
+		- [Test](#)
+	- [3. InversifyJS](#)
+		- [Install packages](#)
+		- [Edit tsconfig.json](#)
 # I. Features
 - Node/ExpressJS Server with nodemon
 - Inversify for DI/IoC to build testable RESTful APIs
