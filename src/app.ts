@@ -1,5 +1,5 @@
 import * as express from 'express';
-import config from './app/AppConfig';
+import config from './config/AppConfig';
 
 const app = express();
 app.get('/', (req, res) => { res.send(`<b>Time:</b> ${new Date()}`); });

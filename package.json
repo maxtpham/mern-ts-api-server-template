@@ -2,9 +2,9 @@
   "name": "mern-ts-api-server-template",
   "version": "1.0.0",
   "description": "Template for a full-featured MERN stack/Typescript & Swagger/InversifyJS APIs server with nodemon to monitor for any changes in your source and automatically restart Node server",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
-    "start": "./node_modules/.bin/nodemon --watch **/*.ts --watch config/*.json --ignore node_modules/ --ignore bin/ --ignore .vscode/ --exec .\\node_modules\\.bin\\ts-node index.ts"
+    "start": "./node_modules/.bin/nodemon --watch src/**/*.ts --watch config/*.json --exec .\\node_modules\\.bin\\ts-node src/app.ts"
   },
   "repository": {
     "type": "git",

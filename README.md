@@ -48,7 +48,7 @@ node ./node_modules/typescript/lib/tsc --init
     "config"
   ]
   ,"include": [
-    "**/*.ts"
+    "src/**/*.ts"
   ]
 }
 ```
@@ -56,7 +56,7 @@ node ./node_modules/typescript/lib/tsc --init
 ```json
 ..
 "scripts": {
-  "start": "./node_modules/.bin/nodemon --watch **/*.ts --ignore node_modules/ --ignore bin/ --ignore .vscode/ --ignore config/ --exec .\\node_modules\\.bin\\ts-node index.ts"
+  "start": "./node_modules/.bin/nodemon --watch src/**/*.ts --exec .\\node_modules\\.bin\\ts-node src/app.ts"
 },
 ..
 ```
@@ -98,13 +98,13 @@ export default config;
 ```
 ### Using the config in index.ts
 ```typescript
-import config from './app/AppConfig';
+import config from './config/AppConfig';
 app.listen(config.Port || 3000, () => console.log(`Server listening on port ${config.Port || 3000}!`));
 ```
 ### nodemon monitors config changes
 ```json
 "scripts": {
-    "start": "./node_modules/.bin/nodemon --watch **/*.ts --watch config/*.json --ignore node_modules/ --ignore bin/ --ignore .vscode/ --exec .\\node_modules\\.bin\\ts-node index.ts"
+    "start": "./node_modules/.bin/nodemon --watch src/**/*.ts --watch config/*.json --exec .\\node_modules\\.bin\\ts-node src/app.ts"
 },
 ```
 ### Test
