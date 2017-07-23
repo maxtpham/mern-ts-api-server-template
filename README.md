@@ -61,6 +61,7 @@ npm install --save express
 node ./node_modules/typescript/lib/tsc --init # create tsconfig.json
 ```
 ```json
+// tsconfig.json
 {
   "compilerOptions": {
     "target": "es6",
@@ -108,6 +109,7 @@ npm install --save-dev @types/config
 ```
 ### Create development config
 ```json
+// config/development.json
 {
     "Port": 3000 // server listen port (default to 3000 if not set)
 }
@@ -126,6 +128,7 @@ export default config;
 ```
 ### Using the config in app
 ```typescript
+// src/app.ts
 import config from './config/AppConfig';
 app.listen(config.Port || 3000, () => console.log(`Server listening on port ${config.Port || 3000}!`));
 ```
@@ -152,6 +155,7 @@ npm install --save-dev @types/reflect-metadata
 ### Update tsconfig for Inversify
 **moduleResolution** set to **node** (instead of default **classic**) to solve the issue [Cannot find module 'inversify'](https://github.com/inversify/InversifyJS/issues/384) in **VSCode**. As there isn't separated typing for @types/inversify accordding to comment from InversifyJS's owner on their [npm package](https://www.npmjs.com/package/@types/inversify).
 ```json
+// tsconfig.json
 {
     "compilerOptions": {
         "moduleResolution": "node",
