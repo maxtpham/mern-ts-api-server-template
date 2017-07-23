@@ -6,22 +6,22 @@ Template for a full-featured [MERN stack](http://mern.io)/[Typescript](http://ww
 - [I. Features](#i-features)
 - [II. Using the template](#ii-using-the-template)
 - [III. Create the template](#iii-create-the-template)
-    - [1. ExpressJS/Typescript](#1-expressjs-typescript)
-        - [Install initial ackages](#install-initial-ackages)
-        - [Create tsconfig.json](#create-tsconfig-json)
-        - [Start command in package.json](#start-command-in-package-json)
-        - [Create index.ts](#create-index-ts)
+    - [1. ExpressJS with Typescript](#1-expressjs-with-typescript)
+        - [Install initial packages](#install-initial-packages)
+        - [Create tsconfig](#create-tsconfig)
+        - [npm start command](#npm-start-command)
+        - [Create app entry](#create-app-entry)
         - [Test express server](#test-express-server)
     - [2. Configuration](#2-configuration)
         - [Install config packages](#install-config-packages)
-        - [Create config/development.json](#create-config-development-json)
-        - [Create app/AppConfig.ts](#create-app-appconfig-ts)
-        - [Using the config in index.ts](#using-the-config-in-index-ts)
+        - [Create development config](#create-development-config)
+        - [Create AppConfig class](#create-appconfig-class)
+        - [Using the config in app](#using-the-config-in-app)
         - [nodemon monitors config changes](#nodemon-monitors-config-changes)
         - [Test config changes](#test-config-changes)
     - [3. InversifyJS](#3-inversifyjs)
         - [Install Inversify packages](#install-inversify-packages)
-        - [Update tsconfig.json](#update-tsconfig-json)
+        - [Update tsconfig for Inversify](#update-tsconfig-for-inversify)
 
 <!-- /TOC -->
 # I. Features
@@ -44,8 +44,8 @@ npm start
 chrome http://localhost:3000
 ```
 # III. Create the template
-## 1. ExpressJS/Typescript
-### Install initial ackages
+## 1. ExpressJS with Typescript
+### Install initial packages
 ```bash
 # Create package.json
 npm init -y
@@ -56,9 +56,9 @@ npm install --save-dev typescript ts-node nodemon @types/debug @types/node @type
 # Install development libs
 npm install --save express
 ```
-### Create tsconfig.json
+### Create tsconfig
 ```bash
-node ./node_modules/typescript/lib/tsc --init
+node ./node_modules/typescript/lib/tsc --init # create tsconfig.json
 ```
 ```json
 {
@@ -77,16 +77,18 @@ node ./node_modules/typescript/lib/tsc --init
   ]
 }
 ```
-### Start command in package.json
+### npm start command
 ```json
+// package.json
 ..
 "scripts": {
   "start": "./node_modules/.bin/nodemon --watch src/**/*.ts --exec .\\node_modules\\.bin\\ts-node src/app.ts"
 },
 ..
 ```
-### Create index.ts
+### Create app entry
 ```typescript
+// src/app.ts
 import * as express from 'express';
 
 const app = express();
@@ -104,14 +106,15 @@ chrome http://localhost:3000
 npm install --save config
 npm install --save-dev @types/config
 ```
-### Create config/development.json
+### Create development config
 ```json
 {
     "Port": 3000 // server listen port (default to 3000 if not set)
 }
 ```
-### Create app/AppConfig.ts
+### Create AppConfig class
 ```typescript
+// app/AppConfig.ts
 import * as c from "config";
 
 interface IAppConfig extends c.IConfig {
@@ -121,7 +124,7 @@ interface IAppConfig extends c.IConfig {
 var config: IAppConfig = <IAppConfig>c;
 export default config;
 ```
-### Using the config in index.ts
+### Using the config in app
 ```typescript
 import config from './config/AppConfig';
 app.listen(config.Port || 3000, () => console.log(`Server listening on port ${config.Port || 3000}!`));
@@ -146,7 +149,7 @@ Please see [InversifyJS installation guide](https://github.com/inversify/Inversi
 npm install --save inversify reflect-metadata
 npm install --save-dev @types/reflect-metadata
 ```
-### Update tsconfig.json
+### Update tsconfig for Inversify
 **moduleResolution** set to **node** (instead of default **classic**) to solve the issue [Cannot find module 'inversify'](https://github.com/inversify/InversifyJS/issues/384) in **VSCode**. As there isn't separated typing for @types/inversify accordding to comment from InversifyJS's owner on their [npm package](https://www.npmjs.com/package/@types/inversify).
 ```json
 {
