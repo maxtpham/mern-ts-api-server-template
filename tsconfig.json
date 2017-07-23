@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "sourceMap": true
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "types": ["reflect-metadata"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   }
   ,"exclude": [
     ".vscode",

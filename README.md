@@ -87,13 +87,13 @@ npm install --save-dev @types/config
 ```
 ### Create app/AppConfig.ts
 ```typescript
-import { IConfig } from "config";
+import * as c from "config";
 
-interface IAppConfig extends IConfig {
+interface IAppConfig extends c.IConfig {
     Port: number;
 }
 
-var config: IAppConfig = require('config');
+var config: IAppConfig = <IAppConfig>c;
 export default config;
 ```
 ### Using the config in index.ts
@@ -114,4 +114,21 @@ npm start
 chrome http://localhost:3000
 chrome http://localhost:3001
 ```
-## 3. InversifyJS
+## 3. [InversifyJS](https://github.com/inversify/InversifyJS#installation)
+### Install packages
+```bash
+npm install --save inversify reflect-metadata
+npm install --save-dev @types/reflect-metadata
+```
+### Edit tsconfig.json
+**moduleResolution** set to **node** (instead of default **classic**) to solve the issue [Cannot find module 'inversify'](https://github.com/inversify/InversifyJS/issues/384) in **VSCode**. As there isn't separated typing for @types/inversify accordding to comment from InversifyJS's owner on their [npm package](https://www.npmjs.com/package/@types/inversify).
+```json
+{
+    "compilerOptions": {
+        "moduleResolution": "node",
+        "types": ["reflect-metadata"],
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
+    }
+}
+```
