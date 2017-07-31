@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "sourceMap": true,
+    "module": "commonjs",
+    "sourceMap": false,
     "moduleResolution": "node",
     "types": ["reflect-metadata"],
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "outDir": "./bin"
   }
   ,"exclude": [
     ".vscode",
@@ -14,6 +16,7 @@
     "config"
   ]
   ,"include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "tests/**/*.ts"
   ]
 }

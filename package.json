@@ -3,9 +3,21 @@
   "version": "1.0.0",
   "description": "Template for a full-featured MERN stack/Typescript & Swagger/InversifyJS APIs server with nodemon to monitor for any changes in your source and automatically restart Node server",
   "main": "src/app.js",
+  "files": [
+    "bin",
+    "config",
+    "*.sh"
+  ],
   "scripts": {
-    "start": "set NODE_ENV=development&& .\\node_modules\\.bin\\nodemon --watch src/**/*.ts --watch config/*.json --exec .\\node_modules\\.bin\\ts-node src/app.ts",
-    "test": "set NODE_ENV=test&& .\\node_modules\\.bin\\ts-node src/app.ts"
+    "build": "npm up && tsc",
+    "b": "npm run build",
+    "prepack": "npm run build",
+    "start": "if-env NODE_ENV=production && npm run start:prd || npm run start:dev",
+    "start:dev": "cross-env-shell NODE_ENV=development \"nodemon --watch src/**/*.ts --watch config/*.json --exec ts-node src/index.ts\"",
+    "start:prd": "cross-env-shell NODE_ENV=production \"node bin/src/index.js\"",
+    "test": "if-env NODE_ENV=production && npm run test:prd || npm run test:dev",
+    "test:dev": "cross-env-shell NODE_ENV=development \"ts-node tests/index.ts\"",
+    "test:prd": "cross-env-shell NODE_ENV=production \"node bin/tests/index.js\""
   },
   "repository": {
     "type": "git",
@@ -30,22 +42,27 @@
   },
   "homepage": "https://github.com/thanhptr/mern-ts-api-server-template#readme",
   "devDependencies": {
+    "@types/body-parser": "^1.16.4",
     "@types/config": "0.0.32",
     "@types/debug": "0.0.29",
     "@types/express": "^4.0.36",
     "@types/mongoose": "^4.7.19",
-    "@types/node": "^8.0.14",
+    "@types/node": "^8.0.17",
     "@types/reflect-metadata": "0.0.5",
     "mockgoose": "^7.3.3",
     "nodemon": "^1.11.0",
-    "ts-node": "^3.2.1",
+    "ts-node": "^3.3.0",
     "typescript": "^2.4.2"
   },
   "dependencies": {
+    "body-parser": "^1.17.2",
     "config": "^1.26.1",
+    "cross-env": "^5.0.1",
     "express": "^4.15.3",
-    "inversify": "^4.2.0",
-    "mongoose": "^4.11.3",
+    "if-env": "^1.0.0",
+    "inversify": "^4.3.0",
+    "inversify-express-utils": "^4.0.0",
+    "mongoose": "^4.11.5",
     "reflect-metadata": "^0.1.10"
   }
 }

@@ -1,5 +1,5 @@
 {
     // UNSUED: "Host": "localhost",         // server binding host (default to localhost)
-    "Port": 3000,                           // server listen port (if n/a then no server wil be created)
+    // UNSUED: "Port": 3000,                // server listen port (if n/a then no server wil be created)
     "MongoDB": "mongodb://localhost/test"
 }
