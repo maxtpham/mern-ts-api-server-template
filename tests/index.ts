@@ -1,11 +1,12 @@
-import main from './../src/main';
+import * as app from './../src/app';
 import config from './../src/lib/AppConfig';
 import container from './../src/lib/IocContainer';
 import test from './test';
 
-main(config, container)
-.then(async app => {
-    await test(app, container);
+export const application = app.create(config, container);
+app.load(application, config, container)
+.then(async () => {
+    await test(application, config, container);
     console.log('[TEST] Done!');
     process.exit(0);
 })

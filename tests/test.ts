@@ -1,7 +1,8 @@
 import * as express from 'express';
 import { interfaces } from "inversify";
+import { AppConfig } from './../src/lib/AppConfig';
 
-export default async function test(app: express.Application, container: interfaces.Container): Promise<void> {
+export default async function test(app: express.Application, config: AppConfig.IRootConfig, container: interfaces.Container): Promise<void> {
     console.log('No tests found!');
     return Promise.resolve();
 }

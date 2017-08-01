@@ -3,7 +3,6 @@ import { interfaces as interfaces_express, InversifyExpressServer, TYPE } from '
 
 import HomeController from "./HomeController";
 
-export default async function registerControllers(container: interfaces.Container): Promise<void> {
+export default function registerControllers(container: interfaces.Container): void {
     container.bind<interfaces_express.Controller>(TYPE.Controller).to(HomeController).whenTargetNamed(HomeController.name);
-    return Promise.resolve();
 }
