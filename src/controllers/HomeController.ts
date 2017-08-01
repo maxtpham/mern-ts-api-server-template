@@ -7,7 +7,7 @@ import Controller from './../lib/Controller';
 
 @injectable()
 @controller('/')
-export default class HomeController extends Controller {
+export class HomeController extends Controller {
   @httpGet('/')
   public get(): string {
     return `<b>Server:</b> ${new Date()}`;

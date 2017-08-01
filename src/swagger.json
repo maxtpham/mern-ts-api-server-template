@@ -1,0 +1,148 @@
+{
+	"basePath": "/v1",
+	"consumes": [
+		"application/json"
+	],
+	"definitions": {
+		"Name": {
+			"properties": {
+				"first": {
+					"type": "string"
+				},
+				"last": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"first"
+			],
+			"type": "object"
+		},
+		"User": {
+			"properties": {
+				"id": {
+					"type": "number",
+					"format": "double"
+				},
+				"email": {
+					"type": "string"
+				},
+				"name": {
+					"$ref": "#/definitions/Name"
+				},
+				"status": {
+					"type": "string",
+					"enum": [
+						"Happy",
+						"Sad"
+					]
+				},
+				"phoneNumbers": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			},
+			"required": [
+				"id",
+				"email",
+				"name",
+				"phoneNumbers"
+			],
+			"type": "object"
+		},
+		"UserCreationRequest": {
+			"properties": {
+				"email": {
+					"type": "string"
+				},
+				"name": {
+					"$ref": "#/definitions/Name"
+				},
+				"phoneNumbers": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			},
+			"required": [
+				"email",
+				"name",
+				"phoneNumbers"
+			],
+			"type": "object"
+		}
+	},
+	"info": {
+		"title": "mern-ts-api-server-template",
+		"version": "1.0.0",
+		"description": "Template for a full-featured MERN stack/Typescript & Swagger/InversifyJS APIs server with nodemon to monitor for any changes in your source and automatically restart Node server",
+		"license": {
+			"name": "ISC"
+		}
+	},
+	"paths": {
+		"/Users/{id}": {
+			"get": {
+				"operationId": "UsersGetUser",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/User"
+						}
+					}
+				},
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "number",
+						"format": "double"
+					},
+					{
+						"in": "query",
+						"name": "name",
+						"required": true,
+						"type": "string"
+					}
+				]
+			}
+		},
+		"/Users": {
+			"post": {
+				"operationId": "UsersCreateUser",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"201": {
+						"description": "Created"
+					}
+				},
+				"parameters": [
+					{
+						"in": "body",
+						"name": "requestBody",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/UserCreationRequest"
+						}
+					}
+				]
+			}
+		}
+	},
+	"produces": [
+		"application/json"
+	],
+	"swagger": "2.0",
+	"securityDefinitions": {},
+	"host": "localhost:3000"
+}
