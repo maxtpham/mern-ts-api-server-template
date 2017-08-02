@@ -1,6 +1,6 @@
 {
   "name": "mern-ts-api-server-template",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Template for a full-featured MERN stack/Typescript & Swagger/InversifyJS APIs server with nodemon to monitor for any changes in your source and automatically restart Node server",
   "main": "src/app.js",
   "files": [
