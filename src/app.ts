@@ -7,6 +7,7 @@ import { InversifyExpressServer } from 'inversify-express-utils';
 import { AppConfig } from './lib/AppConfig';
 import registerControllers from "./controllers/index";
 import { RegisterRoutes } from './routes';
+import SwaggerUI from "./lib/SwaggerUI";
 
 export async function load(app: express.Application, config: AppConfig.IRootConfig, container: interfaces.Container): Promise<void> {
     return Promise.resolve();
@@ -22,22 +23,18 @@ export function create(config: AppConfig.IRootConfig, container: interfaces.Cont
         app.use(bodyparser.urlencoded({ extended: true }));
         app.use(bodyparser.json());
         app.use(methodOverride());
-        app.use('/docs', express.static(__dirname + '/swagger-ui'));
-        app.use('/swagger.json', (req, res) => {
-            res.sendFile(__dirname + '/swagger.json');
-        });
         RegisterRoutes(app);
+        SwaggerUI.register('/api', app, __dirname);
     });
-    const app = server.build();
-    return app;
+    return server.build();
 }
 
 export function start(app: express.Application, config: AppConfig.IRootConfig, container: interfaces.Container): boolean {
     if (config.Port) {
         if (config.Host)
-            app.listen(config.Port, config.Host, () => console.log(`Server started http://${config.Host}${config.Port == 80 ? '' : ':'}${config.Port == 80 ? '' : config.Port}!`));
+            app.listen(config.Port, config.Host, () => console.log(`Server started http://${config.Host}${config.Port == 80 ? '' : ':'}${config.Port == 80 ? '' : config.Port}/api!`));
         else
-            app.listen(config.Port, () => console.log(`Server started http://localhost${config.Port == 80 ? '' : ':'}${config.Port == 80 ? '' : config.Port}!`));
+            app.listen(config.Port, () => console.log(`Server started http://localhost${config.Port == 80 ? '' : ':'}${config.Port == 80 ? '' : config.Port}/api!`));
     }
     else {
         console.warn(`Running config/${process.env.NODE_ENV}.json without Port number, skip launching the express server`);
