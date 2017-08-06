@@ -3,33 +3,27 @@ import * as bodyparser from 'body-parser';
 import * as methodOverride from 'method-override';
 import 'reflect-metadata';
 import { interfaces } from 'inversify';
-import { InversifyExpressServer } from 'inversify-express-utils';
 import { AppConfig } from './lib/AppConfig';
-import registerControllers from "./controllers/index";
 import { RegisterRoutes } from './routes';
-import SwaggerUI from "./lib/SwaggerUI";
+import { RegisterSwaggerUI } from "./lib/SwaggerUI";
 
-export async function load(app: express.Application, config: AppConfig.IRootConfig, container: interfaces.Container): Promise<void> {
+export async function load(app: express.Application, config: AppConfig.IRootConfig, iocContainer: interfaces.Container): Promise<void> {
     return Promise.resolve();
 }
 
-export function create(config: AppConfig.IRootConfig, container: interfaces.Container): express.Application {
-    // Register IoC
-    registerControllers(container);
+export function create(config: AppConfig.IRootConfig, iocContainer: interfaces.Container): express.Application {
 
     // Create the app
-    const server = new InversifyExpressServer(container);
-    server.setConfig((app) => {
-        app.use(bodyparser.urlencoded({ extended: true }));
-        app.use(bodyparser.json());
-        app.use(methodOverride());
-        RegisterRoutes(app);
-        SwaggerUI.register('/api', app, __dirname);
-    });
-    return server.build();
+    const app = express();
+    app.use(bodyparser.urlencoded({ extended: true }));
+    app.use(bodyparser.json());
+    app.use(methodOverride());
+    RegisterRoutes(app);
+    RegisterSwaggerUI(app, '/api', __dirname);
+    return app;
 }
 
-export function start(app: express.Application, config: AppConfig.IRootConfig, container: interfaces.Container): boolean {
+export function start(app: express.Application, config: AppConfig.IRootConfig, iocContainer: interfaces.Container): boolean {
     if (config.Port) {
         if (config.Host)
             app.listen(config.Port, config.Host, () => console.log(`Server started http://${config.Host}${config.Port == 80 ? '' : ':'}${config.Port == 80 ? '' : config.Port}/api!`));

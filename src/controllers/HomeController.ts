@@ -1,14 +1,16 @@
 import * as express from 'express';
 import { injectable, inject } from 'inversify';
-import { controller, httpGet, requestParam } from 'inversify-express-utils';
+import { provideSingleton } from "../lib/IocContainer";
+//import { controller, httpGet, requestParam } from 'inversify-express-utils';
 
 import config from './../lib/AppConfig';
 import Controller from './../lib/Controller';
 
-@injectable()
-@controller('/')
+//@injectable()
+@provideSingleton(HomeController)
+//@controller('/')
 export class HomeController extends Controller {
-  @httpGet('/')
+  //@httpGet('/')
   public get(): string {
     return `<b>Server:</b> ${new Date()}`;
   }

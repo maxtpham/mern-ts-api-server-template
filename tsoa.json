@@ -1,13 +1,15 @@
 {
     "swagger": {
-        "outputDirectory": "./src",
+        "basePath": "/api",
         "entryFile": "./src/index.ts",
-        "host": "localhost:3000",
-        "basePath": "/api"
+        "outputDirectory": "./src",
+        "host": "localhost:3000"
     },
     "routes": {
         "basePath": "/api",
         "entryFile": "./src/index.ts",
-        "routesDir": "./src"
+        "routesDir": "./src",
+        "middleware": "express",
+        "iocModule": "./src/lib/IocContainer"
     }
 }

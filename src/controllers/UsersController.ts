@@ -1,18 +1,18 @@
 import { injectable, inject } from 'inversify';
-import {Get, Post, Route, Body, Query, Header, Path, SuccessResponse, Controller } from 'tsoa';
-import {User, UserCreationRequest} from '../entities/user';
+import { provideSingleton } from "../lib/IocContainer";
+import { Get, Post, Route, Body, Query, Header, Path, SuccessResponse, Controller } from 'tsoa';
+import { User, UserCreationRequest } from '../entities/user';
+import { UserService } from "../services/UserService";
 
-@injectable()
+//@injectable()
+@provideSingleton(UsersController)
 @Route('v1/users')
 export class UsersController {
-    static users: Map<number, User> = <Map<number, User>><any>{
-        1: <User>{ id: 1, email: 'a@b.com', status: 'Happy' }
-    };
+    @inject(UserService) private userService: UserService;
 
     @Get('{id}')
     public async getUser(id: number, @Query() name: string): Promise<User> {
-        console.log("user-getting");
-        return Promise.resolve(UsersController.users[id]);
+        return this.userService.getUser(id);
     }
 
     @SuccessResponse('201', 'Created') // Custom success response
