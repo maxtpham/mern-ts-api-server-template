@@ -17,7 +17,8 @@
     "start:prd": "cross-env-shell NODE_ENV=production \"node bin/src/index.js\"",
     "test": "if-env NODE_ENV=production && npm run test:prd || npm run test:dev",
     "test:dev": "cross-env-shell NODE_ENV=development \"ts-node tests/index.ts\"",
-    "test:prd": "cross-env-shell NODE_ENV=production \"node bin/tests/index.js\""
+    "test:prd": "cross-env-shell NODE_ENV=production \"node bin/tests/index.js\"",
+    "swagger": "tsoa swagger && tsoa routes"
   },
   "repository": {
     "type": "git",

@@ -1,12 +1,12 @@
 {
     "swagger": {
-        "outputDirectory": "./dist",
+        "outputDirectory": "./src",
         "entryFile": "./src/index.ts",
         "host": "localhost:3000",
-        "basePath": "/v1"
+        "basePath": "/api"
     },
     "routes": {
-        "basePath": "/v1",
+        "basePath": "/api",
         "entryFile": "./src/index.ts",
         "routesDir": "./src"
     }

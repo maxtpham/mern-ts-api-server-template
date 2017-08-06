@@ -1,5 +1,5 @@
 {
-	"basePath": "/v1",
+	"basePath": "/api",
 	"consumes": [
 		"application/json"
 	],
@@ -77,14 +77,14 @@
 	},
 	"info": {
 		"title": "mern-ts-api-server-template",
-		"version": "1.0.0",
+		"version": "1.0.6",
 		"description": "Template for a full-featured MERN stack/Typescript & Swagger/InversifyJS APIs server with nodemon to monitor for any changes in your source and automatically restart Node server",
 		"license": {
 			"name": "ISC"
 		}
 	},
 	"paths": {
-		"/Users/{id}": {
+		"/v1/users/{id}": {
 			"get": {
 				"operationId": "UsersGetUser",
 				"produces": [
@@ -98,6 +98,7 @@
 						}
 					}
 				},
+				"security": [],
 				"parameters": [
 					{
 						"in": "path",
@@ -115,7 +116,7 @@
 				]
 			}
 		},
-		"/Users": {
+		"/v1/users": {
 			"post": {
 				"operationId": "UsersCreateUser",
 				"produces": [
@@ -126,6 +127,7 @@
 						"description": "Created"
 					}
 				},
+				"security": [],
 				"parameters": [
 					{
 						"in": "body",

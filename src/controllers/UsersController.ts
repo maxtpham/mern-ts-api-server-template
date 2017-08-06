@@ -3,7 +3,7 @@ import {Get, Post, Route, Body, Query, Header, Path, SuccessResponse, Controller
 import {User, UserCreationRequest} from '../entities/user';
 
 @injectable()
-@Route('Users')
+@Route('v1/users')
 export class UsersController {
     static users: Map<number, User> = <Map<number, User>><any>{
         1: <User>{ id: 1, email: 'a@b.com', status: 'Happy' }

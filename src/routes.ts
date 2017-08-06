@@ -28,7 +28,7 @@ const models: TsoaRoute.Models = {
 };
 
 export function RegisterRoutes(app: any) {
-    app.get('/v1/Users/:id',
+    app.get('/api/v1/users/:id',
         function(request: any, response: any, next: any) {
             const args = {
                 id: { "in": "path", "name": "id", "required": true, "dataType": "double" },
@@ -48,7 +48,7 @@ export function RegisterRoutes(app: any) {
             const promise = controller.getUser.apply(controller, validatedArgs);
             promiseHandler(controller, promise, response, next);
         });
-    app.post('/v1/Users',
+    app.post('/api/v1/users',
         function(request: any, response: any, next: any) {
             const args = {
                 requestBody: { "in": "body", "name": "requestBody", "required": true, "ref": "UserCreationRequest" },
