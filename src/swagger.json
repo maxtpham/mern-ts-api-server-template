@@ -73,6 +73,33 @@
 				"phoneNumbers"
 			],
 			"type": "object"
+		},
+		"Test": {
+			"properties": {
+				"id": {
+					"type": "number",
+					"format": "double"
+				},
+				"name": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"id",
+				"name"
+			],
+			"type": "object"
+		},
+		"TestCreationRequest": {
+			"properties": {
+				"name": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"name"
+			],
+			"type": "object"
 		}
 	},
 	"info": {
@@ -135,6 +162,62 @@
 						"required": true,
 						"schema": {
 							"$ref": "#/definitions/UserCreationRequest"
+						}
+					}
+				]
+			}
+		},
+		"/v1/test/{id}": {
+			"get": {
+				"operationId": "TestGetTest",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/Test"
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "number",
+						"format": "double"
+					},
+					{
+						"in": "query",
+						"name": "name",
+						"required": true,
+						"type": "string"
+					}
+				]
+			}
+		},
+		"/v1/test": {
+			"post": {
+				"operationId": "TestCreateTest",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"201": {
+						"description": "Created"
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "requestBody",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/TestCreationRequest"
 						}
 					}
 				]

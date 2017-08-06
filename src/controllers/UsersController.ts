@@ -1,10 +1,9 @@
-import { injectable, inject } from 'inversify';
+import { inject } from 'inversify';
 import { injectableSingleton } from "../lib/IocContainer";
 import { Get, Post, Route, Body, Query, Header, Path, SuccessResponse, Controller } from 'tsoa';
 import { User, UserCreationRequest } from '../entities/user';
 import { UserService } from "../services/UserService";
 
-//@injectable()
 @injectableSingleton(UsersController)
 @Route('v1/users')
 export class UsersController {

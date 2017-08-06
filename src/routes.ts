@@ -2,6 +2,7 @@
 import { Controller, ValidateParam, FieldErrors, ValidateError, TsoaRoute } from 'tsoa';
 import { iocContainer } from './lib/IocContainer';
 import { UsersController } from './controllers/UsersController';
+import { TestController } from './controllers/TestController';
 
 const models: TsoaRoute.Models = {
     "Name": {
@@ -24,6 +25,17 @@ const models: TsoaRoute.Models = {
             "email": { "dataType": "string", "required": true },
             "name": { "ref": "Name", "required": true },
             "phoneNumbers": { "dataType": "array", "array": { "dataType": "string" }, "required": true },
+        },
+    },
+    "Test": {
+        "properties": {
+            "id": { "dataType": "double", "required": true },
+            "name": { "dataType": "string", "required": true },
+        },
+    },
+    "TestCreationRequest": {
+        "properties": {
+            "name": { "dataType": "string", "required": true },
         },
     },
 };
@@ -66,6 +78,45 @@ export function RegisterRoutes(app: any) {
 
 
             const promise = controller.createUser.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, next);
+        });
+    app.get('/api/v1/test/:id',
+        function(request: any, response: any, next: any) {
+            const args = {
+                id: { "in": "path", "name": "id", "required": true, "dataType": "double" },
+                name: { "in": "query", "name": "name", "required": true, "dataType": "string" },
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = iocContainer.get<TestController>(TestController);
+
+
+            const promise = controller.getTest.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, next);
+        });
+    app.post('/api/v1/test',
+        function(request: any, response: any, next: any) {
+            const args = {
+                requestBody: { "in": "body", "name": "requestBody", "required": true, "ref": "TestCreationRequest" },
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = iocContainer.get<TestController>(TestController);
+
+
+            const promise = controller.createTest.apply(controller, validatedArgs);
             promiseHandler(controller, promise, response, next);
         });
 

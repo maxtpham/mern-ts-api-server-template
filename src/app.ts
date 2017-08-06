@@ -8,7 +8,6 @@ import { AppConfig } from './lib/AppConfig';
 import { RegisterControllers } from './controllers/index';
 import { RegisterRoutes } from './routes';
 import { RegisterSwaggerUI } from "./lib/SwaggerUI";
-import { HomeController } from "./controllers/HomeController";
 
 export async function load(app: express.Application, config: AppConfig.IRootConfig, iocContainer: interfaces.Container): Promise<void> {
     return Promise.resolve();
